@@ -48,8 +48,7 @@ function operate(a, b, operator) {
     if (operator === "÷" && b === 0) {
         clear()
         display.innerText = 'sneaky!'
-        // why this doesn't clear the operator sign? when another number is pressed? bottom should be same as clear
-        //why both first and second number functions are triggered at the same time?
+
     } else {
         if (operator === "+") {
             result = add(a,b)
@@ -67,6 +66,10 @@ function operate(a, b, operator) {
     }
     bNum = ""
     operator = ""
+    if (result === 666) {
+        console.log(result)
+        display.innerText = `${result}😈`
+    }
     console.log(`outcome: ${aNum}, ${bNum}, ${operator}`)
 };
 

@@ -17,8 +17,8 @@ body {
     height: 60vh;
     gap: 0.5rem;
     min-height: 400px;
-    box-shadow: 0 0 .5rem rgb(171, 168, 168);
-    background-color: rgb(47, 47, 48);
+    box-shadow: 0 0 1rem rgb(171, 168, 168);
+    background-color: rgb(55, 55, 57);
 }
 
 .display {
@@ -34,6 +34,7 @@ body {
 
 .outcome {
     align-self: flex-end;
+    padding-right: 0.5rem;
     font-size: 2rem;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

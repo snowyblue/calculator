@@ -15,13 +15,18 @@ function firstNumber(e) {
     if (operator === "=")
         clear()
     if (operator === "") {
+
+        //detecting keys is not working
+        // const key = document.querySelector(`.btn[data-key="${e.key}"]`);
+        // console.log(key)
+
         let selectedNum = e.target.innerText
         aNum+=selectedNum
         console.log(aNum)
 
         display.innerText = aNum
     } 
-};
+}
 
 function secondNumber(e) {
     console.log(`operator sign: ${operator}`)
@@ -33,13 +38,13 @@ function secondNumber(e) {
 
         display.innerText = bNum
     }
-};
+}
 
 function getOperator(e) {
     operator = e.target.innerText
     console.log(operator)
     btnNums.forEach(num => num.addEventListener('mousedown', secondNumber))
-};
+}
 
 function operate(a, b, operator) {
     a = Number(a);
@@ -71,34 +76,34 @@ function operate(a, b, operator) {
         display.innerText = `${result}😈`
     }
     console.log(`outcome: ${aNum}, ${bNum}, ${operator}`)
-};
+}
 
 function add(a,b) {
     console.log(a+b)
     return a+b
-};
+}
 
 function subtract(a,b) {
     console.log(a-b)
     return a-b
-};
+}
   
 function multiply(a,b) {
     console.log(a*b)
     return a*b
-};
+}
 
 function divide(a,b) {
     console.log(a/b)
     return a/b
-};
+}
 
 function clear() {
     aNum = ""
     bNum = ""
     operator = ""
     display.innerText = ""
-};
+}
 
 function deleteNum() { 
     let selectedNum = display.innerText
@@ -109,7 +114,25 @@ function deleteNum() {
     // display number on screen
     display.innerText = aNum
 
-};
+}
+
+//not working
+function handleKeyboardInput(e) {
+    console.log(e.key)
+    if (e.key >= 0 && e.key <= 9 || e.key === '.') firstNumber(e.key)
+    if (e.key === '=' || e.key === 'Enter') operate()
+    if (e.key === 'Backspace') deleteNum()
+    if (e.key === 'Escape') clear()
+    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
+      getOperator(convertOperator(e.key))
+}
+
+function convertOperator(keyboardOperator) {
+    if (keyboardOperator === '/') return '÷'
+    if (keyboardOperator === '*') return 'x'
+    if (keyboardOperator === '-') return '-'
+    if (keyboardOperator === '+') return '+'
+}
 
 
 btnNums.forEach(num => num.addEventListener('mousedown', firstNumber))
@@ -117,3 +140,5 @@ btnOperator.forEach(operator => operator.addEventListener('click', getOperator))
 btnEqual.addEventListener('mousedown', () => operate(aNum,bNum,operator))
 btnDelete.addEventListener('mousedown', deleteNum)
 btnClear.addEventListener('mousedown', clear)
+
+window.addEventListener('keydown', handleKeyboardInput)
